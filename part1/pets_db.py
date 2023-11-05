@@ -1,5 +1,9 @@
 import sqlite3
 
+conn = sqlite3.connect('quiz_pets')
+cursor = conn.cursor()
+cursor.execute('''CREATE TABLE IF NOT EXISTS TABLE_SCHEMA (id INTEGER PRIMARY KEY)''')
+
 TABLE_SCHEMA = """
     CREATE TABLE animals (
       animal_id integer,

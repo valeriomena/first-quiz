@@ -18,20 +18,25 @@
 # name text
 # vegetarian integer
 
-sql_create_favorite_foods = """
 
-Your SQL here.
-
-"""
+sql_create_favorite_foods = '''
+CREATE TABLE IF NOT EXISTS favorite_foods (
+    food_id INTEGER,
+    name TEXT,
+    vegetarian INTEGER
+)
+'''
 
 # Part 5.B:
 # Alter the animals and people tables by adding a new column to each called 'favorite_food_id'
 # The test suite will verify the new changes by inserting some new rows. 
 
-sql_alter_tables_with_favorite_food = """
+sql_alter_tables_with_favorite_food ="""
+ALTER TABLE animals 
+ADD COLUMN favorite_food_id INTEGER;
 
-Your SQL here.
-
+ALTER TABLE people 
+ADD COLUMN favorite_food_id INTEGER;
 """
 
 # Part 5.C:
@@ -39,7 +44,9 @@ Your SQL here.
 # THe output should be a list of tuples in the format: (<pet name>, <food name>)
 
 sql_select_all_vegetarian_pets = """
-
-Your SQL here.
+SELECT A.name, F.name 
+FROM animals A 
+JOIN favorite_foods F ON A.favorite_food_id = F.food_id 
+WHERE F.vegetarian = 1;
 
 """
